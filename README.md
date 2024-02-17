@@ -31,8 +31,17 @@ appsettings.json file contains all the configuration, in most cases default valu
 - **MaximumRecordingDate** "To date" for fetching the recording
 - **MaximumRecordingDataCount** Maximum number of recording data that will be fetched
 
-## Snapshot
+## Snapshots
 ***Note***: All the dates are in local timezone
+
+Recording will be visible like below
+
+![image](https://github.com/ranjit-singh-cc/WebexMessageExtractor/assets/4026661/f2c01d9d-ae24-484e-81d8-9d3c1d7eddb2)
+
+Chats will be visible like below
+
+![image](https://github.com/ranjit-singh-cc/WebexMessageExtractor/assets/4026661/5a1c7d61-5577-40be-bdd7-95725096a27c)
+
 
 ## Prerequisites for developer building project locally
 
