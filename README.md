@@ -24,7 +24,7 @@ appsettings.json file contains all the configuration, in most cases default valu
 
   ***Please Note***: The token is valid for 12 hours! Then you have to get a new Personal Access Token.
 
-  ***Additional Note***: If token is not provided in appsettings.json file then console application will ask to input it in runtime
+  ***Additional Note***: If token is not provided in appsettings.json file then console application will ask you to input it on runtime
 
 - **MessageCountLimit** Maximum number of message that is possible in a direct/group chat
 - **MinimumRecordingDate** "From date" for fetching the recording
