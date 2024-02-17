@@ -8,7 +8,7 @@ This application, built on .NET 6, is designed to seamlessly extract Webex chat 
 
 - **Chat Message Extraction:** Retrieve chat messages from Webex and export them in a readable format.
 - **Recording Extraction:** Extract meeting recording links and include them in the final HTML file.
-- **HTML File Generation:** Create a decent formatted HTML file with extracted chat messages and embedded recordings.
+- **HTML File Generation:** Create a decent formatted HTML file with extracted chat messages and recordings.
 - **User-Friendly Interface:** Simple command-line interface for easy usage and progress of extraction.
 
 ## Getting Started
