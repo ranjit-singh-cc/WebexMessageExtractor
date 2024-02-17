@@ -95,7 +95,7 @@ namespace WebexMessageExtractor {
                 string htmlContent = File.ReadAllText("ui\\chats-template-file.html");
                 htmlContent = htmlContent.Replace("$$menu_section$$", string.Join('\n', menus));
                 htmlContent = htmlContent.Replace("$$script_section$$", string.Join('\n', scripts));
-                File.WriteAllText("ui\\webex-chats.output.html", htmlContent);
+                File.WriteAllText("ui\\webex-chats-output.html", htmlContent);
             }
 
             Console.WriteLine("Press any key to exit");
