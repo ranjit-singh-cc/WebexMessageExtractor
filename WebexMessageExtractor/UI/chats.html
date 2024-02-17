@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Comments Section</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="left-panel">
+        $$menu_section$$
+    </div>
+    <div class="comments-container">
+        <h1 id="groupName">Name of group</h1>
+        <ul id="comments-list" class="comments-list">
+        </ul>
+
+        <ul style="display:none">
+            <li id="comment-template">
+                <div class="comment-main-level">
+                    <div class="comment-avatar">RS</div>
+                    <div class="comment-box">
+                        <div class="comment-head">
+                            <h6 class="comment-name">ranjit.singh7@aon.com</h6>
+                            <span class="comment-time">2023-06-23T09:20:49.675Z</span>
+                        </div>
+                        <div class="comment-content">
+                            Hi Team, we are experiencing the above error when attempting to access mapTQ. Other teams have reached out and are getting the same
+                        </div>
+                    </div>
+                </div>
+                <ul class="comments-list reply-list" style="display:none">
+                </ul>
+            </li>
+        </ul>
+        <ul style="display:none">
+            <li id="reply-template">
+                <div class="comment-avatar">NG</div>
+                <div class="comment-box">
+                    <div class="comment-head">
+                        <h6 class="comment-name">naina.gupta4@aon.com</h6>
+                        <span class="comment-time">2023-06-23T09:20:49.675Z</span>
+                    </div>
+                    <div class="comment-content">
+                        Thanks for the info Manpreet! That was just FYI - nothing we can help with on our end, right? Do you already have an update?
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    $$script_section$$
+    <script type="text/javascript">
+        function renderMessages(ctrl, variableName) {
+            $(".left-panel-menu").removeClass("selected");
+            $(ctrl).closest(".left-panel-menu").addClass("selected");
+            $("#groupName").text($(ctrl).text());
+            $("#comments-list").empty();
+            if (!window[variableName])
+                alert("Wait data not loaded yet");
+
+            var items = window[variableName].items;
+            if (items && items.length) {
+                items = items.sort(function (a, b) {
+                    return new Date(a.created) < new Date(b.created) ? -1 : new Date(a.created) == new Date(b.created) ? 0 : 1;
+                });
+                console.log(items);
+                var $commentTemplate = $("#comment-template").clone().removeAttr("id");
+                var $replyTemplate = $("#reply-template").clone().removeAttr("id");
+                for (var i = 0; i < items.length; i++) {
+                    var $comment;
+                    var item = items[i];
+                    if (!item.parentId) {
+                        $comment = $commentTemplate.clone().attr("id", item.id);
+                        $("#comments-list").append($comment);
+                    }
+                    else {
+                        $comment = $replyTemplate.clone();
+                        $("#" + item.parentId).find(".reply-list").show().append($comment);
+                    }
+
+                    $comment.find(".comment-avatar").text(getName(item.personEmail)).end()
+                        .find(".comment-name").text(item.personEmail).end()
+                        .find(".comment-time").text(new Date(item.created).toLocaleString()).end()
+                        .find(".comment-content")[item.html ? "html" : "text"](item.html || item.text).end();
+                }
+
+                window.scrollTo(0, document.body.scrollHeight);
+            }
+        }
+
+        function getName(email) {
+            var name = "";
+            try {
+                var arr = email.split("@")[0].split(".");
+                if (arr.length > 1)
+                    name = arr[0].charAt(0) + arr[1].charAt(0);
+                else if (arr[0].length > 0)
+                    name = arr[0].substring(0, 2);
+            }
+            catch {
+
+            }
+            return name.toUpperCase();
+        }
+    </script>
+</body>
+</html>

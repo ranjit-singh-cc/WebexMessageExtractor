@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebexMessageExtractor", "WebexMessageExtractor\WebexMessageExtractor.csproj", "{BEDC1ACE-27A5-43A1-8712-B736465FA47E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BEDC1ACE-27A5-43A1-8712-B736465FA47E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEDC1ACE-27A5-43A1-8712-B736465FA47E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEDC1ACE-27A5-43A1-8712-B736465FA47E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEDC1ACE-27A5-43A1-8712-B736465FA47E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {72097EB4-361A-41B5-A141-5D2E63B96C2C}
+	EndGlobalSection
+EndGlobal
