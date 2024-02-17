@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <None Remove="appsettings.json" />
-    <None Remove="UI\chats.html" />
+    <None Remove="UI\chats-template-file.html" />
     <None Remove="UI\styles.css" />
   </ItemGroup>
 
@@ -17,7 +17,7 @@
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="UI\chats.html">
+    <Content Include="UI\chats-template-file.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="UI\styles.css">

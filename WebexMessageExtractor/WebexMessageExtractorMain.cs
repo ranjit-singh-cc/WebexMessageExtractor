@@ -46,6 +46,7 @@ namespace WebexMessageExtractor {
                 Directory.CreateDirectory("ui\\_resources");
 
 
+            LoggingHelper.Log("Fetching recordings");
             string recordingData = HelperClass.GetRecordings();
             if(string.IsNullOrEmpty(recordingData) == false) {
                 string variableName = "recordingdata";
@@ -54,8 +55,11 @@ namespace WebexMessageExtractor {
                 File.WriteAllText($"ui\\_resources\\{fileName}", recordingData);
                 menus.Add($"<div class='left-panel-menu' onclick=\"renderRecordings(this, '{variableName}')\"><a>Recordings</a></div>");
                 scripts.Add($"<script async src='_resources\\{fileName}'></script>");
+
+                LoggingHelper.Log("Recording data exported");
             }
 
+            LoggingHelper.Log("Fetching rooms");
             IDictionary<string, string> rooms = HelperClass.GetRooms();
             LoggingHelper.Log($"{rooms.Count} chat room found");
             if(rooms.Count == 0) {
@@ -88,12 +92,10 @@ namespace WebexMessageExtractor {
             }
 
             if(menus.Count > 0) {
-                string htmlContent = File.ReadAllText("ui\\chats.html");
+                string htmlContent = File.ReadAllText("ui\\chats-template-file.html");
                 htmlContent = htmlContent.Replace("$$menu_section$$", string.Join('\n', menus));
                 htmlContent = htmlContent.Replace("$$script_section$$", string.Join('\n', scripts));
-                File.WriteAllText("ui\\webex-chats.html", htmlContent);
-
-                File.Delete("ui\\chats.html");
+                File.WriteAllText("ui\\webex-chats.output.html", htmlContent);
             }
 
             Console.WriteLine("Press any key to exit");
