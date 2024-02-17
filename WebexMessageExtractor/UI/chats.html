@@ -51,6 +51,31 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     $$script_section$$
     <script type="text/javascript">
+        function renderRecordings(ctrl, variableName) {
+            $(".left-panel-menu").removeClass("selected");
+            $(ctrl).closest(".left-panel-menu").addClass("selected");
+            $("#groupName").text($(ctrl).text());
+            $("#comments-list").empty();
+
+            var items = window[variableName].items;
+            if (items && items.length) {
+                items = items.sort(function (b, a) {//reverse sorting
+                    return new Date(a.createTime) < new Date(b.createTime) ? -1 : new Date(a.createTime) == new Date(b.createTime) ? 0 : 1;
+                });
+                console.log(items);
+                var $commentTemplate = $("#comment-template").clone().removeAttr("id");
+                for (var i = 0; i < items.length; i++) {
+                    var $comment;
+                    var item = items[i];
+                    $comment = $commentTemplate.clone().find(".comment-avatar").text(getName(item.hostEmail)).end()
+                        .find(".comment-name").text(item.hostEmail).end()
+                        .find(".comment-time").text(new Date(item.createTime).toLocaleString()).end()
+                        .find(".comment-content").html("Topic: " + item.topic + " <br/>Download Url: <a target=\"_blank\" href=\"" + item.downloadUrl + "\">" + item.downloadUrl + "</a><br/>Playback Url: <a target=\"_blank\" href=\"" + item.playbackUrl + "\">" + item.playbackUrl + "</a><br/>Duration: " + displaySeconds(item.durationSeconds) + "<br/>Size: " + displayFileSizeInMB(item.sizeBytes)).end();
+
+                    $("#comments-list").append($comment);
+                }
+            }
+        }
         function renderMessages(ctrl, variableName) {
             $(".left-panel-menu").removeClass("selected");
             $(ctrl).closest(".left-panel-menu").addClass("selected");
@@ -102,6 +127,21 @@
 
             }
             return name.toUpperCase();
+        }
+
+        function displaySeconds(totalSeconds) {
+            const totalMinutes = Math.floor(totalSeconds / 60);
+
+            const seconds = totalSeconds % 60;
+            const hours = Math.floor(totalMinutes / 60);
+            const minutes = totalMinutes % 60;
+
+            return hours + " hr " + minutes + " min " + seconds + " sec";
+        }
+
+        function displayFileSizeInMB(totalBytes) {
+            var fileSizeMB = totalBytes / (1024 * 1024)
+            return fileSizeMB.toFixed(2) + " MB";
         }
     </script>
 </body>

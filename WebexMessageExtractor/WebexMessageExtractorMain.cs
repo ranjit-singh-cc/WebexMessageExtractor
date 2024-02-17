@@ -28,16 +28,39 @@ namespace WebexMessageExtractor {
             if(int.TryParse(config.GetSection("MessageCountLimit").Value, out int maxMessageCount))
                 HelperClass.MaxMessageCount = maxMessageCount;
 
+            if(DateTime.TryParseExact(config.GetSection("MinimumRecordingDate").Value, "yyyy-MM-dd", null, System.Globalization.DateTimeStyles.None, out DateTime minimumRecordingDate))
+                HelperClass.MinimumRecordingDate = minimumRecordingDate;
+
+            if(DateTime.TryParseExact(config.GetSection("MaximumRecordingDate").Value, "yyyy-MM-dd", null, System.Globalization.DateTimeStyles.None, out DateTime maximumRecordingDate))
+                HelperClass.MaximumRecordingDate = maximumRecordingDate;
+
+            if(int.TryParse(config.GetSection("MaximumRecordingDataCount").Value, out int maximumRecordingDataCount))
+                HelperClass.MaximumRecordingDataCount = maximumRecordingDataCount;
+
             HelperClass.SetProtocol();
+
+            IList<string> menus = new List<string>();
+            IList<string> scripts = new List<string>();
+
+            if(Directory.Exists("ui\\_resources") == false)
+                Directory.CreateDirectory("ui\\_resources");
+
+
+            string recordingData = HelperClass.GetRecordings();
+            if(string.IsNullOrEmpty(recordingData) == false) {
+                string variableName = "recordingdata";
+                string fileName = variableName + ".js";
+                recordingData = $"var {variableName} = {recordingData}";
+                File.WriteAllText($"ui\\_resources\\{fileName}", recordingData);
+                menus.Add($"<div class='left-panel-menu' onclick=\"renderRecordings(this, '{variableName}')\"><a>Recordings</a></div>");
+                scripts.Add($"<script async src='_resources\\{fileName}'></script>");
+            }
 
             IDictionary<string, string> rooms = HelperClass.GetRooms();
             LoggingHelper.Log($"{rooms.Count} chat room found");
             if(rooms.Count == 0) {
                 Console.WriteLine("Please check error log file to see what went wrong");
             }
-
-            IList<string> menus = new List<string>();
-            IList<string> scripts = new List<string>();
 
             int counter = 1;
             int index = 1;
@@ -57,10 +80,10 @@ namespace WebexMessageExtractor {
                     }
 
                     messageData = $"var {variableName} = {messageData}";
-                    File.WriteAllText($"ui\\{fileName}", messageData);
+                    File.WriteAllText($"ui\\_resources\\{fileName}", messageData);
 
                     menus.Add($"<div class='left-panel-menu' onclick=\"renderMessages(this, '{variableName}')\"><a>{roomName}</a></div>");
-                    scripts.Add($"<script async src='{fileName}'></script>");
+                    scripts.Add($"<script async src='_resources\\{fileName}'></script>");
                 }
             }
 
@@ -69,6 +92,8 @@ namespace WebexMessageExtractor {
                 htmlContent = htmlContent.Replace("$$menu_section$$", string.Join('\n', menus));
                 htmlContent = htmlContent.Replace("$$script_section$$", string.Join('\n', scripts));
                 File.WriteAllText("ui\\webex-chats.html", htmlContent);
+
+                File.Delete("ui\\chats.html");
             }
 
             Console.WriteLine("Press any key to exit");

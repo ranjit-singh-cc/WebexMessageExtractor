@@ -20,6 +20,10 @@ body {
 		background: #dee1e3;
 }
 
+spark-mention {
+		color: #cd1b5d;
+}
+
 .left-panel {
 		width: 200px;
 		position: fixed;
@@ -242,7 +246,7 @@ body {
 		-webkit-border-radius: 0 0 4px 4px;
 		-moz-border-radius: 0 0 4px 4px;
 		border-radius: 0 0 4px 4px;
-		word-break:break-word;
+		word-break: break-word;
 }
 
 .comment-box .comment-name.by-author, .comment-box .comment-name.by-author a {

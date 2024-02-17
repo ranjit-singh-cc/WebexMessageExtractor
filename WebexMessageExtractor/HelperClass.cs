@@ -12,6 +12,14 @@ namespace WebexMessageExtractor {
 
         public static string BearerToken = "";
         public static int MaxMessageCount = 1000;
+        public static DateTime MinimumRecordingDate = DateTime.Now.AddYears(-3);
+        public static DateTime MaximumRecordingDate = DateTime.Now;
+        public static int MaximumRecordingDataCount = 100;
+
+        public static string GetRecordings() {
+            return ExecuteApis("recordings", queryString: string.Format("max={0}&from={1}&to={2}", MaximumRecordingDataCount
+            , MinimumRecordingDate.ToString("yyyy-MM-dd"), MaximumRecordingDate.ToString("yyyy-MM-dd")));
+        }
 
         public static IDictionary<string, string> GetRooms() {
             IDictionary<string, string> rooms = new Dictionary<string, string>();
