@@ -13,7 +13,7 @@ This application, built on .NET 6, is designed to seamlessly extract Webex chat 
 
 ## Getting Started
 
-If you are developer and wants to run the code by building it locally then you can follow installation steps else directly download the executable file [https://github.com/ranjit-singh-cc/WebexMessageExtractor/blob/master/executable/WebexMessageExtractor.zip](https://github.com/ranjit-singh-cc/WebexMessageExtractor/blob/master/executable/WebexMessageExtractor.zip)
+If you are developer and wants to run the code by building it locally then you can follow installation steps else directly download the executable file [https://github.com/ranjit-singh-cc/WebexMessageExtractor/blob/master/executable/WebexMessageExtractor.zip](https://github.com/ranjit-singh-cc/WebexMessageExtractor/blob/master/executable/WebexMessageExtractor.zip) and run WebexMessageExtractor.exe by double clicking on file
 
 ## Configuration
 
