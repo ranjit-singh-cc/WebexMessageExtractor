@@ -34,6 +34,11 @@ appsettings.json file contains all the configuration, in most cases default valu
 ## Snapshots
 ***Note***: All the dates are in local timezone
 
+Output file will be visible like below(inside UI folder)
+
+![image](https://github.com/ranjit-singh-cc/WebexMessageExtractor/assets/4026661/4499d39b-7e43-4d02-96f3-987ace067fd4)
+
+
 Recording will be visible like below
 
 ![image](https://github.com/ranjit-singh-cc/WebexMessageExtractor/assets/4026661/f2c01d9d-ae24-484e-81d8-9d3c1d7eddb2)
